@@ -1,6 +1,7 @@
 package my_project.control;
 
 import KAGO_framework.control.ViewController;
+import my_project.model.CatParser;
 import my_project.model.KnebiParser;
 import my_project.view.MainGUI;
 
@@ -18,6 +19,7 @@ public class ProgramController {
     // Referenzen
     private ViewController viewController;  // diese Referenz soll auf ein Objekt der Klasse viewController zeigen. Über dieses Objekt wird das Fenster gesteuert.
     private KnebiParser knebiParser;
+    private CatParser catParser;
 
     /**
      * Konstruktor
@@ -39,6 +41,7 @@ public class ProgramController {
         viewController.getSoundController().loadSound("src/main/resources/sound/yesyesyes.mp3","yes",false);
         viewController.getSoundController().loadSound("src/main/resources/sound/nonono.mp3","no",false);
         knebiParser = new KnebiParser();
+        catParser = new CatParser();
         // todo Eigener Code
 
     }
@@ -57,7 +60,11 @@ public class ProgramController {
             case 1:
                 return knebiParser.parse(input);
 
+            case 2 :
+                return catParser.parse(input);
+
             default: System.out.println("\nDebug-Info: Für diesen Index ist kein Parser definiert!");
+
         }
         return false;
     }
@@ -78,6 +85,13 @@ public class ProgramController {
             case 1:
                 return knebiParser.getScannerResult(input);
 
+
+            case 2:
+                boolean resullt = catParser.getScannerResult(input);
+                System.out.println("\n- CatScanner-DEBUG - "+catParser.getScannerOutput());
+                return resullt;
+            case 3:
+                return catParser.getScannerResult(input);
             default: System.out.println("\nDebug-Info: Für diesen Index ist kein Scanner definiert!");
         }
         return false;

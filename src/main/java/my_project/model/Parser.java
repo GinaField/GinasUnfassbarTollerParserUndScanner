@@ -6,4 +6,5 @@ public interface Parser {
 
     public boolean getScannerResult(String input);
 
+    String getScannerOutput();
 }
